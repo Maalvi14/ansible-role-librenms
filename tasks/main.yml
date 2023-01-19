@@ -68,12 +68,12 @@
 - name: install php
   ansible.builtin.include_role:
     name: geerlingguy.php
-    vars:
-      php_enable_webserver: false
-      php_use_managed_ini: "{{ librenms_php_use_managed_ini }}"
-      php_memory_limit: "{{ librenms_php_memory_limit }}"
-      php_packages_extra: "{{ _librenms_php_packages_extra }}"
-      php_version: "{{ _librenms_php_version }}"
+  vars:
+    php_enable_webserver: false
+    php_use_managed_ini: "{{ librenms_php_use_managed_ini }}"
+    php_memory_limit: "{{ librenms_php_memory_limit }}"
+    php_packages_extra: "{{ _librenms_php_packages_extra }}"
+    php_version: "{{ _librenms_php_version }}"
 
 
 - name: set php timezone
