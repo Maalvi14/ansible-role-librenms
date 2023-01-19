@@ -67,7 +67,7 @@
 
 - name: install php
   ansible.builtin.include_role:
-      name: geerlingguy.php
+    name: geerlingguy.php
     vars:
       php_enable_webserver: false
       php_use_managed_ini: "{{ librenms_php_use_managed_ini }}"
