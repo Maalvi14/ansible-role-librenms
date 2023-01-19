@@ -20,6 +20,7 @@ librenms_packages_default:
     - python3-redis
     - python3-setuptools
     - python3-systemd
+    - python3-pip
     - cron
   default: []
 
@@ -45,18 +46,18 @@ librenms_mysql_config_path_default:
 
 librenms_php_packages_extra_default:
   debian:
-    - "php{{ _librenms_php_version }}-cli"
-    - "php{{ _librenms_php_version }}-curl"
-    - "php{{ _librenms_php_version }}-fpm"
-    - "php{{ _librenms_php_version }}-gd"
-    - "php{{ _librenms_php_version }}-json"
-    - "php{{ _librenms_php_version }}-mbstring"
-    - "php{{ _librenms_php_version }}-mysql"
-    - "php{{ _librenms_php_version }}-snmp"
-    - "php{{ _librenms_php_version }}-xml"
-    - "php{{ _librenms_php_version }}-zip"
-    - "php{{ _librenms_php_version }}-ldap"
-    - "php{{ _librenms_php_version }}-gmp"
+    - "php-cli"
+    - "php-curl"
+    - "php-fpm"
+    - "php-gd"
+    - "php-json"
+    - "php-mbstring"
+    - "php-mysql"
+    - "php-snmp"
+    - "php-xml"
+    - "php-zip"
+    - "php-ldap"
+    - "php-gmp"
   default: []
 librenms_php_ini_timezone_default:
   debian:
