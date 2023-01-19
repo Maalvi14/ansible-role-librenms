@@ -233,26 +233,6 @@
   become_user: "{{ librenms_user }}"
   changed_when: false
 
-- name: Check if librenms database exists
-  ansible.builtin.mysql_db:
-    name: "{{ librenms_db_name }}"
-    state: present
-  register: librenms_db_exists
-
-- name: Print if librenms database exists
-  debug:
-    msg: "LibreNMS database exists"
-  when: librenms_db_exists.changed
-
-- name: Check if users table exists in librenms database
-  ansible.builtin.command: "mysql -u{{ librenms_db_user }} -p{{ librenms_db_pass }} {{ librenms_db_name }} -e 'SHOW TABLES LIKE \"users\"'"
-  register: librenms_users_table
-
-- name: Print if users table exists in librenms database
-  debug:
-    msg: "Users table exists in the librenms database"
-  when: librenms_users_table.stdout != ""
-
 - name: get list of current librenms users
   ansible.builtin.command: "mysql -u{{ librenms_db_user }} -p{{ librenms_db_pass }} {{ librenms_db_name }} -e 'SELECT username FROM users'"
   register: librenms_user_list
