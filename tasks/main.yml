@@ -70,7 +70,7 @@
     php_use_managed_ini: "{{ librenms_php_use_managed_ini }}"
     php_memory_limit: "{{ librenms_php_memory_limit }}"
     php_packages_extra: "{{ _librenms_php_packages_extra }}"
-    php_version: '8.1'
+    php_version: "{{ _librenms_php_version }}"
 
 
 - name: set php timezone
