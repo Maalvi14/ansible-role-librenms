@@ -149,7 +149,7 @@ librenms_nfs_server: no
 librenms_php_webserver_daemon: nginx
 librenms_php_use_managed_ini: no
 librenms_php_version_default:
-  default: 8.1
+  default: 8.2
 librenms_php_timezone: "UTC"
 librenms_memory_limit: "4096M"
 librenms_folder_permissions:
