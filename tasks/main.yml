@@ -76,7 +76,6 @@
   ansible.builtin.include_role:
     name: geerlingguy.php
   vars:
-    php_installs_recommends: false
     php_enable_webserver: false
     php_use_managed_ini: "{{ librenms_php_use_managed_ini }}"
     php_memory_limit: "{{ librenms_php_memory_limit }}"
