@@ -44,20 +44,21 @@ librenms_mysql_config_path_default:
   debian: "/etc/mysql/mariadb.conf.d/50-server.cnf"
   default: ""
 
-librenms_php_packages_extra_default:
+librenms_php_packages_default:
   debian:
-    - "php-cli"
-    - "php-curl"
-    - "php-fpm"
-    - "php-gd"
-    - "php-json"
-    - "php-mbstring"
-    - "php-mysql"
-    - "php-snmp"
-    - "php-xml"
-    - "php-zip"
-    - "php-ldap"
-    - "php-gmp"
+    - "php{{ _librenms_php_version }}-cli"
+    - "php{{ _librenms_php_version }}-curl"
+    - "php{{ _librenms_php_version }}-fpm"
+    - "php{{ _librenms_php_version }}-gd"
+    - "php{{ _librenms_php_version }}-json"
+    - "php{{ _librenms_php_version }}-mbstring"
+    - "php{{ _librenms_php_version }}-mysql"
+    - "php{{ _librenms_php_version }}-snmp"
+    - "php{{ _librenms_php_version }}-xml"
+    - "php{{ _librenms_php_version }}-zip"
+    - "php{{ _librenms_php_version }}-ldap"
+    - "php{{ _librenms_php_version }}-gmp"
+  
   default: []
 librenms_php_ini_timezone_default:
   debian:
