@@ -15,6 +15,11 @@
   tags:
     - always
 
+- name: php version validation
+  ansible.builtin.fail:
+    msg: "PHP version 8.1.x is the minimun supported version."
+  when: _librenms_php_version is version('8.1', operator='lt')
+
 - name: set php packages extra
   ansible.builtin.set_fact:
     _librenms_php_packages_extra: "{{ librenms_php_packages_extra | default(librenms_php_packages_extra_default | sorted_get(overrides)) }}"
