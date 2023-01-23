@@ -22,7 +22,7 @@
 
 - name: set php packages extra
   ansible.builtin.set_fact:
-    _librenms_php_packages_extra: "{{ librenms_php_packages_extra | default(librenms_php_packages_extra_default | sorted_get(overrides)) }}"
+    _librenms_php_packages: "{{ librenms_php_packages | default(librenms_php_packages_extra_default | sorted_get(overrides)) }}"
     _librenms_php_ini_timezone: "{{ librenms_php_ini_timezone | default(librenms_php_ini_timezone_default | sorted_get(overrides)) }}"
   vars:
     overrides:
@@ -73,7 +73,7 @@
     php_enable_webserver: false
     php_use_managed_ini: "{{ librenms_php_use_managed_ini }}"
     php_memory_limit: "{{ librenms_php_memory_limit }}"
-    php_packages_extra: "{{ _librenms_php_packages_extra }}"
+    php_packages: "{{ _librenms_php_packages }}"
     php_version: "{{ _librenms_php_version }}"
 
 - name: set php timezone
