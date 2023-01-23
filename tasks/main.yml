@@ -20,9 +20,9 @@
     msg: "PHP version 8.1.x is the minimun supported version."
   when: _librenms_php_version is version('8.1', operator='lt')
 
-- name: set php packages extra
+- name: set php packages
   ansible.builtin.set_fact:
-    _librenms_php_packages: "{{ librenms_php_packages | default(librenms_php_packages_extra_default | sorted_get(overrides)) }}"
+    _librenms_php_packages: "{{ librenms_php_packages | default(librenms_php_packages_default | sorted_get(overrides)) }}"
     _librenms_php_ini_timezone: "{{ librenms_php_ini_timezone | default(librenms_php_ini_timezone_default | sorted_get(overrides)) }}"
   vars:
     overrides:
