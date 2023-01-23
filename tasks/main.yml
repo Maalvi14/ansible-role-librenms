@@ -66,6 +66,12 @@
 - name: flush_handlers
   ansible.builtin.meta: flush_handlers
 
+- name: include geerlingguy.php-versions role
+  ansible.builtin.include_role:
+    name: geerlingguy.php-versions
+  vars:
+    php_version: "{{ _librenms_php_version }}"
+
 - name: install php
   ansible.builtin.include_role:
     name: geerlingguy.php
