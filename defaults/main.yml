@@ -46,23 +46,23 @@ librenms_mysql_config_path_default:
 
 librenms_php_packages_default:
   debian:
-    - "php{{ php_version }}-cli"
-    - "php{{ php_version }}-curl"
-    - "php{{ php_version }}-fpm"
-    - "php{{ php_version }}-gd"
-    - "php{{ php_version }}-mbstring"
-    - "php{{ php_version }}-mysql"
-    - "php{{ php_version }}-snmp"
-    - "php{{ php_version }}-xml"
-    - "php{{ php_version }}-zip"
-    - "php{{ php_version }}-ldap"
-    - "php{{ php_version }}-gmp"
+    - "php{{ _librenms_php_version }}-cli"
+    - "php{{ _librenms_php_version }}-curl"
+    - "php{{ _librenms_php_version }}-fpm"
+    - "php{{ _librenms_php_version }}-gd"
+    - "php{{ _librenms_php_version }}-mbstring"
+    - "php{{ _librenms_php_version }}-mysql"
+    - "php{{ _librenms_php_version }}-snmp"
+    - "php{{ _librenms_php_version }}-xml"
+    - "php{{ _librenms_php_version }}-zip"
+    - "php{{ _librenms_php_version }}-ldap"
+    - "php{{ _librenms_php_version }}-gmp"
   
   default: []
 librenms_php_ini_timezone_default:
   debian:
-    - "/etc/php/{{ php_version }}/cli/php.ini"
-    - "/etc/php/{{ php_version }}/fpm/php.ini"
+    - "/etc/php/{{ _librenms_php_version }}/cli/php.ini"
+    - "/etc/php/{{ _librenms_php_version }}/fpm/php.ini"
   default: []
 
 librenms_composer_path: /usr/local/bin/composer
@@ -84,7 +84,7 @@ librenms_nginx_vhost_extra: |
   location ~ \.php {
     include fastcgi.conf;
     fastcgi_split_path_info ^(.+\.php)(/.+)$;
-    fastcgi_pass unix:/var/run/php/php{{ php_version }}-fpm.sock;
+    fastcgi_pass unix:/var/run/php/php{{ _librenms_php_version }}-fpm.sock;
   }
   location ~ /\.ht {
     deny all;

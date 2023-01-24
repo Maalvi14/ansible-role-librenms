@@ -3,6 +3,7 @@
   ansible.builtin.set_fact:
     _librenms_packages: "{{ librenms_package | default(librenms_packages_default | sorted_get(overrides)) }}"
     _librenms_mysql_packages: "{{ librenms_mysql_packages | default(librenms_mysql_packages_default | sorted_get(overrides)) }}"
+    _librenms_php_version: "{{ librenms_php_version | default(librenms_php_version_default | sorted_get(overrides)) }}"
     _librenms_mysql_config_path: "{{ librenms_mysql_config_path | default(librenms_mysql_config_path_default | sorted_get(overrides)) }}"
   vars:
     overrides:
@@ -13,6 +14,11 @@
       - "default"
   tags:
     - always
+
+- name: php version validation
+  ansible.builtin.fail:
+    msg: "PHP version 8.1.x is the minimun supported version."
+  when: _librenms_php_version is version('8.1', operator='lt')
 
 - name: set php packages
   ansible.builtin.set_fact:
@@ -63,12 +69,9 @@
 - name: include geerlingguy.php-versions role
   ansible.builtin.include_role:
     name: geerlingguy.php-versions
-
-- debug:
-    msg: "{{ php_packages }}"
-
-- debug:
-    msg: "{{ php_extension_conf_paths }}"
+  vars:
+    php_version: "{{ _librenms_php_version }}"
+    php_packages: "{{ _librenms_php_packages }}"
 
 - name: install php
   ansible.builtin.include_role:
@@ -95,7 +98,7 @@
 
 - name: start fpm
   ansible.builtin.service:
-    name: "php{{ php_version }}-fpm"
+    name: "php{{ _librenms_php_version }}-fpm"
     state: started
     enabled: true
 
