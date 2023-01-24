@@ -81,6 +81,7 @@
     php_memory_limit: "{{ librenms_php_memory_limit }}"
     php_packages: "{{ _librenms_php_packages }}"
     php_version: "{{ _librenms_php_version }}"
+    php_default_version_debian: "{{ _librenms_php_version }}"
 
 - name: set php timezone
   ansible.builtin.lineinfile:
