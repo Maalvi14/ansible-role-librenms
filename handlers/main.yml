@@ -3,6 +3,7 @@
   ansible.builtin.service:
     name: mysql
     state: restarted
+    enabled: true
 
 - name: restart fpm
   ansible.builtin.service:

@@ -45,6 +45,7 @@ jobs:
           - default
         distro:
           - ubuntu2004
+          - ubuntu2204
 
     steps:
 

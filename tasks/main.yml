@@ -15,9 +15,14 @@
   tags:
     - always
 
-- name: set php packages extra
+- name: php version validation
+  ansible.builtin.fail:
+    msg: "PHP version 8.1.x is the minimun supported version."
+  when: _librenms_php_version is version('8.1', operator='lt')
+
+- name: set php packages
   ansible.builtin.set_fact:
-    _librenms_php_packages_extra: "{{ librenms_php_packages_extra | default(librenms_php_packages_extra_default | sorted_get(overrides)) }}"
+    _librenms_php_packages: "{{ librenms_php_packages | default(librenms_php_packages_default | sorted_get(overrides)) }}"
     _librenms_php_ini_timezone: "{{ librenms_php_ini_timezone | default(librenms_php_ini_timezone_default | sorted_get(overrides)) }}"
   vars:
     overrides:
@@ -61,6 +66,13 @@
 - name: flush_handlers
   ansible.builtin.meta: flush_handlers
 
+- name: include geerlingguy.php-versions role
+  ansible.builtin.include_role:
+    name: geerlingguy.php-versions
+  vars:
+    php_version: "{{ _librenms_php_version }}"
+    php_packages: "{{ _librenms_php_packages }}"
+
 - name: install php
   ansible.builtin.include_role:
     name: geerlingguy.php
@@ -68,7 +80,7 @@
     php_enable_webserver: false
     php_use_managed_ini: "{{ librenms_php_use_managed_ini }}"
     php_memory_limit: "{{ librenms_php_memory_limit }}"
-    php_packages_extra: "{{ _librenms_php_packages_extra }}"
+    php_packages: "{{ _librenms_php_packages }}"
 
 - name: set php timezone
   ansible.builtin.lineinfile:
