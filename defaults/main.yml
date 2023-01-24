@@ -58,6 +58,7 @@ librenms_php_packages_default:
     - "php{{ _librenms_php_version }}-zip"
     - "php{{ _librenms_php_version }}-ldap"
     - "php{{ _librenms_php_version }}-gmp"
+    - "php{{ _librenms_php_version }}-json"
   
   default: []
 librenms_php_ini_timezone_default:
